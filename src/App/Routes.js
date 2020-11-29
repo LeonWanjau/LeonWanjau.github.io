@@ -5,7 +5,7 @@ import Home from 'Components/Home'
 
 const Routes = () => {
     return (
-        <BrowserRouter basename='/'>
+        <BrowserRouter basename='/personalsite/dist/index.html'>
             <Switch>
                 <Route exact path='/'><Home /></Route>
             </Switch>

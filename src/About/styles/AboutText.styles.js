@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     text: {
         color: 'white',
         textAlign: 'center',
-        fontFamily: fonts.title,
+        fontFamily: fonts.body,
         fontSize: 'clamp(2rem,calc(2rem + 2vw),4rem)',
         margin: 0,
         padding: `${smallScreenPadding.tops} ${smallScreenPadding.sides}`,

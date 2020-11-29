@@ -16,7 +16,28 @@ const AboutTextLarge = () => {
         animContainerRef
     )
 
+    const animRef=useRef(null)
+    
     useEffect(() => {
+        if(animRef.current==null){
+            animRef.current=lottie.loadAnimation({
+                container: animContainerRef.current,
+                renderer: 'svg',
+                autoplay: false,
+                loop: false,
+                path: AboutTextAnim
+            })
+        }
+
+        const anim=animRef.current
+
+        if(animContainerIsIntersecting){
+            setTimeout(()=>{
+                anim.play()
+            },100)
+        }
+
+        /*
         if (animContainerIsIntersecting) {
             const anim = lottie.loadAnimation({
                 container: animContainerRef.current,
@@ -36,6 +57,7 @@ const AboutTextLarge = () => {
 
             return () => { anim.destroy() }
         }
+        */
 
     }, [animContainerIsIntersecting])
 

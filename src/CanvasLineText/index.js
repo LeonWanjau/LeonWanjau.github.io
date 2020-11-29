@@ -56,7 +56,7 @@ const handleScreenChanges = (renderObj) => {
         text: "Hello,\nI'm Leon\nand I'm a\nFullstack\nDeveloper",
         xOffset: 0,
         yOffset: 130,
-        scale: 45
+        scale: 38
     }
 
     const smallScreenTextProperties = {

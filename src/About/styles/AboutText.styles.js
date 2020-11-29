@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     textContainer: {
         display: 'flex',
         justifyContent: 'center',
+        width:'calc(100% - 28px)',
         //padding: `${smallScreenPadding.tops} ${smallScreenPadding.sides}`,
         borderRadius: '4px',
     },

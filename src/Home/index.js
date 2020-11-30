@@ -3,7 +3,7 @@ import AppBar from 'SharedComponents/AppBar'
 //CanvasLineText
 import CanvasLineText from 'Components/CanvasLineText'
 //React
-import React from 'react'
+import { Fragment,memo } from 'react'
 //Background with clipper
 import BackgroundWithClipper from 'SharedComponents/BackgroundWithClipper'
 //Material ui
@@ -13,6 +13,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import About from 'Components/About'
 //Styles
 import useStyles from './styles/index.styles'
+//Helmet
+import { Helmet } from 'react-helmet'
+//Tab image
+import TabImage from 'Assets/images/tab-briefcase.svg'
 
 const Home = () => {
     const classes = useStyles()
@@ -24,16 +28,21 @@ const Home = () => {
     const clearBackground = 'white'
 
     return (
-        <React.Fragment>
+        <Fragment>
+            <Helmet>
+                <title>Leon Wanjau</title>
+                <link rel='icon' href={TabImage} />
+            </Helmet>
+
             <AppBar />
 
-                <CanvasLineText />
+            <CanvasLineText />
 
-                <BackgroundWithClipper backgroundColor='white' contentPadding={contentPadding}>
-                    <About />
-                </BackgroundWithClipper>
-        </React.Fragment>
+            <BackgroundWithClipper backgroundColor='white' contentPadding={contentPadding}>
+                <About />
+            </BackgroundWithClipper>
+        </Fragment>
     )
 }
 
-export default React.memo(Home)
+export default memo(Home)

@@ -18,9 +18,13 @@ const App = () => {
     const [windowLoaded, setWindowLoaded] = useState(false)
 
     useEffect(() => {
-        window.addEventListener('load', () => {
+        if (document.readyState !== 'complete') {
+            window.addEventListener('load', () => {
+                setWindowLoaded(true)
+            })
+        } else {
             setWindowLoaded(true)
-        })
+        }
     }, [])
 
     return (

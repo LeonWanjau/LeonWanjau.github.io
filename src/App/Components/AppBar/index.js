@@ -16,9 +16,9 @@ import Drawer from 'SharedComponents/Drawer'
 
 //AppBar Routes
 const routes = [
-    { name: 'About', path: '/' },
-    { name: 'Projects', path: '/' },
-    { name: 'Contacts', path: '/' }
+    { name: 'About', path: '#about' },
+    //{ name: 'Projects', path: '/' },
+    //{ name: 'Contacts', path: '/' }
 ]
 
 const AppBar = () => {

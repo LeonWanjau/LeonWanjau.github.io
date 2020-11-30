@@ -5,9 +5,9 @@ import Home from 'Components/Home'
 
 const Routes = () => {
     return (
-        <BrowserRouter basename='/personalsite/dist/index.html'>
+        <BrowserRouter basename='/'>
             <Switch>
-                <Route exact path='/'><Home /></Route>
+                <Route path='/'><Home /></Route>
             </Switch>
         </BrowserRouter>
     )

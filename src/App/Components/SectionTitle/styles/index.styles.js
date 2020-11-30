@@ -12,6 +12,7 @@ const titleClipPath=`polygon(
 )`
 
 const useStyles = makeStyles(theme=>({
+
     titleIntersector:{
         transform:'translateX(-50%)',
         transition:'transform 500ms ease-in-out',

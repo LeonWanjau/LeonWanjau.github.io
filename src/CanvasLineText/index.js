@@ -12,7 +12,7 @@ const CanvasLineText = () => {
     useLayoutEffect(() => {
         if (canvasRef.current !== null) {
             const renderLineText = new RenderLineText(canvasRef.current,
-                theme.palette.secondary[100]
+                theme.palette.secondary[200]
             )
 
             //renderLineText.initText(textProps)

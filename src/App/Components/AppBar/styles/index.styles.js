@@ -13,7 +13,7 @@ const largeAppBarClipPath = `polygon(
     100% ${innerAppBarHeight},
     100% 0
 )`
-const smallAppBarClipPath=`polygon(
+const smallAppBarClipPath = `polygon(
     0 0,
     0 ${innerAppBarHeight},
     8% 100%,
@@ -40,15 +40,15 @@ const useStyles = makeStyles(theme => ({
 
     innerAppBarContainer: {
         //height: innerAppBarHeight,
-        height:'100%',
+        height: '100%',
         padding: '0.2em 0.8em',
         display: 'flex',
         flex: '1 1 0',
     },
 
     routesArea: {
-        display:'none',
-        marginRight:'1em',
+        display: 'none',
+        marginRight: '1em',
     },
 
     borderAppBar: {
@@ -61,27 +61,31 @@ const useStyles = makeStyles(theme => ({
         zIndex: zIndex,
     },
 
-    menuIcon:{
+    menuIcon: {
         marginTop: '0.04em',
     },
 
-    drawerItemsContainer:{
-        minWidth:'80vw',
-        height:'100%',
+    drawerItemsContainer: {
+        minWidth: '80vw',
+        height: '100%',
     },
 
-    drawerCloseIconContainer:{
-        display:'flex',
-        justifyContent:'flex-end',
-        padding:'0.2em 0.8em'
+    drawerCloseIconContainer: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '0.2em 0.8em'
     },
 
-    drawerRoutesContainer:{
-        padding:'0.5em 0 0 0'
+    drawerRoutesContainer: {
+        padding: '0.5em 0 0 0'
     },
 
-    drawerRouteItem:{
-        padding:'0.5em'
+    drawerRouteItem: {
+        padding: '0.5em'
+    },
+
+    spacer: {
+        height: appBarHeight
     },
     /*
     clippedBorderAppBar: {
@@ -96,23 +100,23 @@ const useStyles = makeStyles(theme => ({
     },
     */
 
-    [theme.breakpoints.up('sm')]:{
-        appBarContainer:{
-           // clipPath: largeAppBarClipPath,
+    [theme.breakpoints.up('sm')]: {
+        appBarContainer: {
+            // clipPath: largeAppBarClipPath,
         },
 
-        menuIconContainer:{
-            display:'none',
+        menuIconContainer: {
+            display: 'none',
         },
 
-        routesArea:{
+        routesArea: {
             display: 'flex',
-            justifyContent:'center',
-            alignItems:'center'
+            justifyContent: 'center',
+            alignItems: 'center'
         },
 
-        innerAppBarContainer:{
-            justifyContent:'flex-end'
+        innerAppBarContainer: {
+            justifyContent: 'flex-end'
         }
     }
 }))

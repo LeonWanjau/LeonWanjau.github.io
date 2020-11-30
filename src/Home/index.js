@@ -11,8 +11,12 @@ import { useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 //About section
 import About from 'Components/About'
+//Styles
+import useStyles from './styles/index.styles'
 
 const Home = () => {
+    const classes = useStyles()
+
     const theme = useTheme()
 
     const contentPadding = '1em'
@@ -23,12 +27,11 @@ const Home = () => {
         <React.Fragment>
             <AppBar />
 
-            <CanvasLineText />
+                <CanvasLineText />
 
-            <BackgroundWithClipper backgroundColor='white'contentPadding={contentPadding}>
-                <About />
-            </BackgroundWithClipper>
-
+                <BackgroundWithClipper backgroundColor='white' contentPadding={contentPadding}>
+                    <About />
+                </BackgroundWithClipper>
         </React.Fragment>
     )
 }

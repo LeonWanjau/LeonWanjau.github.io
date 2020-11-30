@@ -34,7 +34,7 @@ const About = () => {
 
     return (
         <div>
-            <SectionTitle text='About' />
+            <SectionTitle text='About' id='about'/>
 
             {xsScreen ? <AboutText /> : <AboutTextLarge />}
 

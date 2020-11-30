@@ -1,6 +1,5 @@
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => {
 
@@ -20,14 +19,21 @@ const useStyles = makeStyles(theme => {
             },
 
             '&:hover $linkTextContainer':{
-                backgroundColor:'gainsboro',
+                backgroundColor:theme.palette.secondary[100],
                 transform:'translate(10px,-5px)'
             },
 
             '&:hover $shadow':{
                 backgroundColor:'black',
                 transition:'background-color 300ms ease-in-out'
-            }
+            },
+
+            
+            '&:active $linkTextContainer':{
+                transform:'translate(0px,0px)',
+                transition:'transform 50ms ease-in-out, background-color 200ms ease-in-out',
+            },
+            
         },
 
         
@@ -74,7 +80,7 @@ const PageLink = ({ path, text }) => {
     const classes = useStyles()
     
     return (
-        <Link to={path} className={classes.link}>
+        <a href={path} className={classes.link}>
 
             <div className={classes.shadow}/>
 
@@ -83,7 +89,7 @@ const PageLink = ({ path, text }) => {
                     {text}
                 </Typography>
             </div>
-        </Link>
+        </a>
     )
 }
 

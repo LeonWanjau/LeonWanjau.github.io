@@ -45,10 +45,18 @@ const useStyles = makeStyles({
 
         html:{
             fontSize:'16px',
+            scrollBehavior:'smooth'
         },
 
         body: {
             margin: 0
+        },
+
+        ':target::before':{
+            content:'""',
+            display:'block',
+            height:'calc(10vh + 10px)',
+            marginTop:'-10vh',
         },
 
         '@font-face':

@@ -13,9 +13,16 @@ const CanvasLineText = () => {
 
     const threeRef = useRef(null)
     const [threeLoaded, setThreeLoaded] = useState(threeRef.current !== null)
+    /*
     if (threeRef.current == null) {
         setTimeout(loadThree,10)
     }
+    */
+    useEffect(()=>{
+        if(threeRef.current==null){
+            loadThree()
+        }
+    },[])
 
     async function loadThree() {
         threeRef.current = {}

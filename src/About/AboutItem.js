@@ -19,14 +19,24 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
     //lottie library
     const lottieRef = useRef(null)
     const [lottieLoaded, setLottieLoaded] = useState(false)
-    if (lottieRef.current == undefined) {
+    /*
+    if (lottieRef.current == null) {
         setTimeout(() => {
-            import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web').then(({ default: lottieDefault }) => {
+            import('lottie-web').then(({ default: lottieDefault }) => {
                 lottieRef.current = lottieDefault
                 setLottieLoaded(true)
             })
         }, 10)
     }
+    */
+    useEffect(()=>{
+        if(lottieRef.current==null){
+            import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web').then(({ default: lottieDefault }) => {
+                lottieRef.current = lottieDefault
+                setLottieLoaded(true)
+            })
+        }
+    },[])
 
     //initialize animation
     const animRef = useRef(null)

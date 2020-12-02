@@ -20,11 +20,12 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
     const lottieRef = useRef(null)
     const [lottieLoaded, setLottieLoaded] = useState(false)
     if (lottieRef.current == undefined) {
-        import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web').then(({ default: lottieDefault }) => {
-            lottieRef.current = lottieDefault
-            //setLottieLoaded(true)
-            setTimeout(() => { setLottieLoaded(true) }, 2000)
-        })
+        setTimeout(() => {
+            import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web').then(({ default: lottieDefault }) => {
+                lottieRef.current = lottieDefault
+                setLottieLoaded(true)
+            })
+        }, 10)
     }
 
     //initialize animation
@@ -107,13 +108,13 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
 
     //play animation
     useEffect(() => {
-            if (animEnteringAnimationDone == true) {
-                if (func !== undefined) {
-                    func(animRef.current)
-                } else {
-                    animRef.current.play()
-                }
+        if (animEnteringAnimationDone == true) {
+            if (func !== undefined) {
+                func(animRef.current)
+            } else {
+                animRef.current.play()
             }
+        }
     }, [animEnteringAnimationDone])
 
     return (
@@ -176,15 +177,15 @@ function useEnteringAnimationDone(elementRef, animation, isIntersecting) {
     const [enteringAnimationDone, setEnteringAnimationDone] = useState(false)
 
     useEffect(() => {
-            if (isIntersecting == true) {
-                const tween = gsap.to(
-                    elementRef.current,
-                    {
-                        ...animation,
-                        onComplete: () => { setEnteringAnimationDone(true) }
-                    }
-                )
-            }
+        if (isIntersecting == true) {
+            const tween = gsap.to(
+                elementRef.current,
+                {
+                    ...animation,
+                    onComplete: () => { setEnteringAnimationDone(true) }
+                }
+            )
+        }
     }, [isIntersecting])
 
     return enteringAnimationDone

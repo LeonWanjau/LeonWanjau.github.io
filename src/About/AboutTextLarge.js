@@ -18,11 +18,12 @@ const AboutTextLarge = () => {
     const lottieRef = useRef(null)
     const [lottieLoaded, setLottieLoaded] = useState(false)
     if (lottieRef.current == undefined) {
-        import(/* webpackChunkName: "lottie-AboutTextLarge" */'lottie-web').then(({ default: lottieDefault }) => {
-            lottieRef.current = lottieDefault
-            setLottieLoaded(true)
-            //setTimeout(()=>{setLottieLoaded(true)},2000)
-        })
+        setTimeout(()=>{
+            import(/* webpackChunkName: "lottie-AboutTextLarge" */'lottie-web').then(({ default: lottieDefault }) => {
+                lottieRef.current = lottieDefault
+                setLottieLoaded(true)
+            })
+        },10)
     }
 
     //initialize animation

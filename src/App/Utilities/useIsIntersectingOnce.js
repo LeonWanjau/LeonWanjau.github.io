@@ -10,7 +10,7 @@ const useIsIntersectingOnce = (options, elementRef) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     setIsIntersecting(true)
-                    //observer.disconnect()
+                    observer.disconnect()
                 }
             })
         }

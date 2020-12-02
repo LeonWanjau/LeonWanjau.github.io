@@ -37,7 +37,18 @@ const useStyles=makeStyles(theme=>({
     },
 
     drawerItem1:{
-        backgroundImage:`linear-gradient(135deg, ${theme.palette.primary[300]} 5%, ${theme.palette.primary[100]} 40%)`,
+        //backgroundImage:`linear-gradient(135deg, ${theme.palette.primary[300]} 5%, ${theme.palette.primary[100]} 40%)`,
+        backgroundColor:theme.palette.primary[200],
+        transition:'background-color 200ms ease-in-out',
+
+        '&:hover':{
+            backgroundColor:theme.palette.primary[500],
+            cursor:'pointer',
+        },
+
+        '&:hover $link':{
+            color:'white',
+        }
     },
 
     drawerItem2:{
@@ -68,7 +79,37 @@ const useStyles=makeStyles(theme=>({
 
     drawerBottomItem:{
         height:`calc(${bottomItemHeight})`,
-    }
+    },
+
+    closeIconContainer:{
+        width:'4rem',
+        height:'4rem',
+        marginTop:'1rem',
+
+        '&:hover $closeIcon':{
+            fill:theme.palette.primary[900],
+            transform:'scale(0.9)',
+            cursor:'pointer',
+        },
+
+        '&:active $closeIcon':{
+            transform:'scale(0.7)'
+        }
+    },
+
+    closeIcon:{
+        width:'100%',
+        height:'100%',
+        fill:theme.palette.primary.main,
+        transition:'fill 100ms ease-in-out, transform 100ms ease-in-out'
+    },
+
+    link:{
+        display:'block',
+        textDecoration:'none',
+        color:'black',
+        transition:'color 200ms ease-in-out'
+    },
 }))
 
 export default useStyles

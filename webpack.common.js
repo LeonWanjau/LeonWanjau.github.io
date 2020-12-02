@@ -52,5 +52,12 @@ module.exports = {
             Components:path.resolve(__dirname,'src/'),
             Utilities:path.resolve(__dirname,'src/App/Utilities'),
         }
+    },
+
+    optimization:{
+        splitChunks:{
+            chunks:'all',
+            //minSize:0,
+        }
     }
 }

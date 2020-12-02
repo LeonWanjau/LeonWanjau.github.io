@@ -11,12 +11,11 @@ module.exports = merge(common, {
     },
     output: {
         filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js',
+        //chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/'
     },
     mode: 'production',
-    devtool: 'none',
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
@@ -30,4 +29,11 @@ module.exports = merge(common, {
             template: 'src/App/index.template.html'
         })
     ],
+
+    optimization:{
+        splitChunks:{
+            chunks:'all',
+            //minSize:0,
+        }
+    }
 });

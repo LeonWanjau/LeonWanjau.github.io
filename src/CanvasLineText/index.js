@@ -1,7 +1,9 @@
 import useStyles from './styles/index.styles.js'
-import { useRef, useLayoutEffect, memo, useState } from 'react'
+import { useRef, useEffect, memo, useState } from 'react'
 import RenderLineText from './RenderLineText'
 import { useTheme } from '@material-ui/core/styles'
+import { gsap} from 'gsap'
+
 
 const CanvasLineText = () => {
     const classes = useStyles()
@@ -9,27 +11,72 @@ const CanvasLineText = () => {
 
     const canvasRef = useRef(null)
 
-    useLayoutEffect(() => {
-        if (canvasRef.current !== null) {
-            const renderLineText = new RenderLineText(canvasRef.current,
-                theme.palette.secondary[200]
-            )
+    const threeRef = useRef(null)
+    const [threeLoaded, setThreeLoaded] = useState(threeRef.current !== null)
+    if (threeRef.current == null) {
+        loadThree()
+    }
 
-            //renderLineText.initText(textProps)
-            handleScreenChanges(renderLineText)
+    async function loadThree() {
+        threeRef.current = {}
 
-            const onWindowResize = () => { renderLineText.onWindowResize() }
+        threeRef.current.THREE = await import(/* webpackChunkName: "Three" */ 'three')
 
-            window.addEventListener('resize', onWindowResize, false)
+        const { SVGLoader } = await import(/* webpackChunkName: "Three SVGLoader" */ 'three/examples/jsm/loaders/SVGLoader.js')
+        threeRef.current.SVGLoader = SVGLoader
 
-            return () => { window.removeEventListener('resize', onWindowResize, false) }
+        setThreeLoaded(true)
+    }
+
+    const [canvasLoaded, setCanvasLoaded] = useState(false)
+
+    useEffect(() => {
+        if (threeLoaded && threeRef.current !== null) {
+            if (canvasRef.current !== null) {
+                const renderLineText = new RenderLineText(canvasRef.current,
+                    theme.palette.secondary[200], threeRef.current.THREE, threeRef.current.SVGLoader,
+                    setCanvasLoaded
+                )
+
+                handleScreenChanges(renderLineText)
+
+                const onWindowResize = () => { renderLineText.onWindowResize() }
+
+                window.addEventListener('resize', onWindowResize, false)
+
+                return () => {
+                    window.removeEventListener('resize', onWindowResize, false)
+                }
+            }
         }
-    }, [])
+    }, [threeLoaded])
+
+    useEffect(()=>{
+        if(canvasLoaded){
+            const tl=gsap.timeline({defaults:{ ease: 'power1.inOut' } })
+
+            tl.to(`.${classes.fallback}`,{duration:1,scale:0.8,opacity:0,display:'none'})
+            .to(`.${classes.canvas}`,{duration:1,scale:1,opacity:1})
+        }
+    },[canvasLoaded])
 
     return (
         <React.Fragment>
-            <canvas ref={canvasRef} className={classes.canvas}>
-            </canvas>
+            <div className={classes.container}>
+                
+                <canvas ref={canvasRef} className={`${classes.canvas}`}
+                >
+                </canvas>
+                
+                <div
+                    className={`${classes.fallback}`}>
+                        <p className={classes.fallbackText}>
+                            Hello I'm Leon
+                            <br/> and I'm a 
+                            <br/>Fullstack Developer
+                        </p>
+                </div>
+            </div>
             {/* 
             <p id='temp2'
                 style={{

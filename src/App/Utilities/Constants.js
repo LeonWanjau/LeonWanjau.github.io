@@ -1,5 +1,3 @@
-import FontFaceObserver from 'fontfaceobserver'
-
 //webgl background
 export const webGLSceneBackground='#f0f0f0'
 //large clipper height
@@ -11,7 +9,8 @@ export const fonts={
     body:'Roboto',
     title:'Alegreya',
 }
-export const titleFontLoaded=new FontFaceObserver(fonts.title).load()
+//app bar height
+export const appBarHeight='10vh'
 
 //svg id names
 export const svgIds={

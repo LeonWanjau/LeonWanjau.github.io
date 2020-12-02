@@ -1,7 +1,5 @@
-//material-ui
-import { Typography } from '@material-ui/core'
 //react
-import React, { useState, useRef } from 'react'
+import React, { useState, Suspense } from 'react'
 //styles
 import useStyles from './styles/index.styles'
 //about item
@@ -9,7 +7,7 @@ import AboutItem from './AboutItem'
 //ResponsiveAnim
 import ResponsiveAnim from 'Assets/animations/ResponsiveAnim.json.data'
 //ResponsiveAnimSmall
-import ResponsiveAnimSmall from 'Assets/animations/ResponsiveAnimSmall.json.data'
+//import ResponsiveAnimSmall from 'Assets/animations/ResponsiveAnimSmall.json.data'
 //PerformantAnim
 import PerformantAnim from 'Assets/animations/PerformantAnim.json.data'
 //EasyToUseAnim
@@ -34,33 +32,36 @@ const About = () => {
 
     return (
         <div>
-            <SectionTitle text='About' id='about'/>
+            <SectionTitle text='About' id='about' />
 
-            {xsScreen ? <AboutText /> : <AboutTextLarge />}
+            {xsScreen ? <AboutText /> : <AboutTextLarge /> }
 
             <div className={classes.aboutItemsContainer}>
                 <AboutTextIntro />
 
-                <AboutItem title='Responsive'
-                    text='I always ensure my sites adapt to any device'
-                    animPath={ResponsiveAnim}
-                    loop={false}
-                    func={ResponsiveFunc}
-                />
+                    <AboutItem title='Responsive'
+                        text='I always ensure my sites adapt to any device'
+                        animPath={ResponsiveAnim}
+                        loop={false}
+                        func={ResponsiveFunc}
+                        xsScreen={xsScreen}
+                    />
 
-                <AboutItem title='Performant'
-                    text='Delivering performant sites is a top priority for me'
-                    animPath={PerformantAnim}
-                    loop={true}
-                />
+                    <AboutItem title='Performant'
+                        text='Delivering performant sites is a top priority for me'
+                        animPath={PerformantAnim}
+                        loop={true}
+                        xsScreen={xsScreen}
+                    />
 
-                <AboutItem title='Easy To Use'
-                    text='I ensure my user-interfaces are easy to use'
-                    animPath={EasyToUseAnim}
-                    loop={false}
-                    autoplay={false}
-                    func={EasyToUseFunc}
-                />
+                    <AboutItem title='Easy To Use'
+                        text='I ensure my user-interfaces are easy to use'
+                        animPath={EasyToUseAnim}
+                        loop={false}
+                        autoplay={false}
+                        func={EasyToUseFunc}
+                        xsScreen={xsScreen}
+                    />
             </div>
         </div>
     )
@@ -89,7 +90,7 @@ function EasyToUseFunc(anim) {
                 animAtMid = true
             }
         })
-    }, 1000)
+    }, 100)
 
 }
 
@@ -114,7 +115,7 @@ function ResponsiveFunc(anim) {
             }
 
         }
-    }, 1000)
+    }, 100)
 }
 
 export default React.memo(About)

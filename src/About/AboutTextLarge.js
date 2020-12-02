@@ -1,68 +1,88 @@
-import { useEffect, useRef, memo } from 'react'
+import { useEffect, useRef, memo, useState } from 'react'
 import useStyles from './styles/AboutTextLarge.styles'
 import AboutTextAnim from 'Assets/animations/AboutTextAnim.json.data'
-import lottie from 'lottie-web'
-import useIsIntersectingOnce from 'Utilities/useIsIntersectingOnce'
+//import lottie from 'lottie-web'
+//import lottie from 'lottie-web/build/player/lottie_light.min.js'
+import useConditionalIntersectingOnce from 'Utilities/useConditionalIntersectingOnce'
+import SpinningLoader from 'SharedComponents/SpinningLoader'
+import { gsap } from 'gsap'
+
 
 const AboutTextLarge = () => {
     const classes = useStyles()
 
+    //animation container
     const animContainerRef = useRef(null)
 
-    const animContainerIsIntersecting = useIsIntersectingOnce({
+    //lottie library
+    const lottieRef = useRef(null)
+    const [lottieLoaded, setLottieLoaded] = useState(false)
+    if (lottieRef.current == undefined) {
+        import(/* webpackChunkName: "lottie-AboutTextLarge" */'lottie-web').then(({ default: lottieDefault }) => {
+            lottieRef.current = lottieDefault
+            setLottieLoaded(true)
+            //setTimeout(()=>{setLottieLoaded(true)},2000)
+        })
+    }
+
+    //initialize animation
+    const animRef = useRef(null)
+    const [animLoaded, setAnimLoaded] = useState(false)
+    useEffect(() => {
+        if (lottieLoaded && animRef.current == null) {
+            animRef.current = lottieRef.current.loadAnimation({
+                container: animContainerRef.current,
+                renderer: 'svg',
+                autoplay: false,
+                loop: false,
+                path: AboutTextAnim
+            })
+
+            animRef.current.addEventListener('DOMLoaded', () => {
+                setAnimLoaded(true)
+            })
+
+            return () => { animRef.current.destroy() }
+        }
+    }, [lottieLoaded])
+
+    //remove fallback
+    const [fallbackRemoved, setFallbackRemoved] = useState(false)
+    useEffect(() => {
+        if (animLoaded) {
+            const tl = gsap.timeline({
+                onComplete: () => { setFallbackRemoved(true) },
+                defaults: { ease: 'power1.inOut' }
+            })
+
+            tl.to(`.${classes.fallback}`, { duration: 1, scaleX: 0.5, scaleY: 0.5, opacity: 0, display: 'none' })
+        }
+    }, [animLoaded])
+
+    //listen for intersection
+    const animIsIntersecting = useConditionalIntersectingOnce({
         rootMargin: '-10% 0px -10% 0px',
         threshold: '0.8'
     },
-        animContainerRef
+        animContainerRef,
+        fallbackRemoved
     )
 
-    const animRef=useRef(null)
-    
+    //play animation
     useEffect(() => {
-        if(animRef.current==null){
-            animRef.current=lottie.loadAnimation({
-                container: animContainerRef.current,
-                renderer: 'svg',
-                autoplay: false,
-                loop: false,
-                path: AboutTextAnim
-            })
+        if (animIsIntersecting && animRef.current !== null) {
+            setTimeout(() => { animRef.current.play() }, 200)
         }
+    }, [animIsIntersecting])
 
-        const anim=animRef.current
-
-        if(animContainerIsIntersecting){
-            setTimeout(()=>{
-                anim.play()
-            },100)
-        }
-
-        /*
-        if (animContainerIsIntersecting) {
-            const anim = lottie.loadAnimation({
-                container: animContainerRef.current,
-                renderer: 'svg',
-                autoplay: false,
-                loop: false,
-                path: AboutTextAnim
-            })
-
-
-            anim.addEventListener('DOMLoaded', () => {
-                setTimeout(()=>{
-                    anim.play()
-                },
-                100)
-            })
-
-            return () => { anim.destroy() }
-        }
-        */
-
-    }, [animContainerIsIntersecting])
 
     return (
-        <div ref={animContainerRef} className={classes.animContainer}></div>
+        <div className={classes.container}>
+            <div ref={animContainerRef} className={classes.animContainer}></div>
+            <div className={`${classes.fallback}`}>
+                <SpinningLoader />
+            </div>
+        </div>
     )
 }
 

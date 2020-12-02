@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => {
 
             '&:hover $linkTextContainer':{
                 backgroundColor:theme.palette.secondary[100],
-                transform:'translate(10px,-5px)'
+                transform:'translate(10px,-5px)',
+                cursor:'pointer',
             },
 
             '&:hover $shadow':{

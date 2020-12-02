@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '3rem',
         width: '100%',
         backgroundColor: theme.palette.secondary[200],
+        position: 'relative',
     },
 
     textIntersector: {
@@ -33,6 +34,8 @@ const useStyles = makeStyles(theme => ({
     imageContainer: {
         width: '100%',
         height: '100%',
+        opacity:0,
+        transform:'scale(0.9)'
     },
 
     animIntersector: {
@@ -40,6 +43,16 @@ const useStyles = makeStyles(theme => ({
         height: '40vh',
         flex: '3 1 0',
         borderRadius: '0',
+        position: 'relative'
+    },
+
+    fallback: {
+        position: 'absolute',
+        width: '50%',
+        height: '50%',
+        left: '50%',
+        top:'50%',
+        transform: 'translate(-50%,-50%)',
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -71,14 +84,14 @@ const useStyles = makeStyles(theme => ({
             borderRadius: '0.2rem',
             border: '2px solid black',
             backgroundColor: theme.palette.primary[100],
-            transform:'translate3d(-100%,0,0)',
-            opacity:0,
+            transform: 'translate3d(-100%,0,0)',
+            opacity: 0,
         },
 
-        textIsIntersecting:{
-            transform:'translate3d(0,0,0)',
-            opacity:1,
-            transition:'transform 1000ms ease-in-out, opacity 800ms ease-in-out',
+        textIsIntersecting: {
+            transform: 'translate3d(0,0,0)',
+            opacity: 1,
+            transition: 'transform 1000ms ease-in-out, opacity 800ms ease-in-out',
         },
 
         imageContainer: {
@@ -88,14 +101,14 @@ const useStyles = makeStyles(theme => ({
             paddingTop: `calc(0.1 * ${largeContainerHeight})`,
             borderRadius: '0.25em',
             border: '2px solid black',
-            transform:'scale(0.9)',
-            opacity:'0',
+            transform: 'scale(0.9)',
+            opacity: '0',
         },
 
-        animIsIntersecting:{
-            transform:'scale(1)',
-            opacity:1,
-            transition:'transform 1000ms ease-in-out, opacity 1000ms ease-in-out'
+        animIsIntersecting: {
+            transform: 'scale(1)',
+            opacity: 1,
+            transition: 'transform 1000ms ease-in-out, opacity 1000ms ease-in-out'
         },
 
         animIntersector: {
@@ -105,7 +118,7 @@ const useStyles = makeStyles(theme => ({
             position: 'absolute',
             right: '0',
             bottom: '0',
-            overflow:'hidden',
+            overflow: 'hidden',
         },
     },
 

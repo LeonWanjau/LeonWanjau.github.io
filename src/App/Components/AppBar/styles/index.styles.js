@@ -1,6 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles'
-import AppBarBorderSvg from '../AppBarBorder.svg'
-import indigo from '@material-ui/core/colors/indigo'
 
 const innerAppBarHeight = '65%'
 const appBarHeight = '10vh'
@@ -27,7 +25,7 @@ const zIndex = 10
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
         display: 'flex',
-        background: `linear-gradient(90deg, ${theme.palette.primary.main} 5%, ${indigo[200]} 40%)`,
+        background: `linear-gradient(90deg, ${theme.palette.primary.main} 5%, ${theme.palette.primary[200]} 40%)`,
         height: appBarHeight,
         width: '100%',
         justifyContent: 'flex-end',
@@ -61,8 +59,26 @@ const useStyles = makeStyles(theme => ({
         zIndex: zIndex,
     },
 
+    menuIconContainer:{
+        height:'95%',
+        width:'3rem',
+    },
+
     menuIcon: {
-        marginTop: '0.04em',
+        width:'100%',
+        height:'100%',
+        fill:'white',
+        transition:'fill 100ms ease-in-out, transform 100ms ease-in-out',
+
+        '&:hover':{
+            fill:theme.palette.secondary[500],
+            transform:'scale(0.9)',
+            cursor:'pointer',
+        },
+
+        '&:active':{
+            transform:'scale(0.7)'
+        }
     },
 
     drawerItemsContainer: {

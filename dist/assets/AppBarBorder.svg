@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-<defs>
-   <filter id="dilate_shape">
-      <feMorphology operator="dilate" in="SourceGraphic" radius="3" />
-   </filter>
- </defs> 
-</svg>

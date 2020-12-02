@@ -14,7 +14,7 @@ const CanvasLineText = () => {
     const threeRef = useRef(null)
     const [threeLoaded, setThreeLoaded] = useState(threeRef.current !== null)
     if (threeRef.current == null) {
-        loadThree()
+        setTimeout(loadThree,10)
     }
 
     async function loadThree() {

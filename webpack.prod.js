@@ -35,5 +35,14 @@ module.exports = merge(common, {
             chunks:'all',
             //minSize:0,
         }
-    }
+    },
+
+    /*
+    devServer: {
+        //contentBase: __dirname,
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000
+    },
+    */
 });

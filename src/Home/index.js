@@ -13,7 +13,7 @@ import About from 'Components/About'
 //Styles
 import useStyles from './styles/index.styles'
 //Fonts promise
-import { fontsPromise } from 'Utilities/Constants'
+//import { fontsPromise } from 'Utilities/Constants'
 
 const Home = () => {
     const classes = useStyles()
@@ -29,14 +29,16 @@ const Home = () => {
         setHomeLoaded(true)
     }, [])
 
+    /*
     const [fontsLoaded, setFontsLoaded] = useState(false)
     fontsPromise.then(() => {
         setFontsLoaded(true)
     })
+    */
 
     return (
         <Fragment>
-            <div className={`${classes.container} ${homeLoaded && fontsLoaded ? classes.containerLoaded : null}`}>
+            <div className={`${classes.container} ${homeLoaded /*&& fontsLoaded*/ ? classes.containerLoaded : null}`}>
                 <AppBar />
 
                 <CanvasLineText />

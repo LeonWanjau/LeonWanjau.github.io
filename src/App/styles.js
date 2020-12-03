@@ -14,7 +14,7 @@ const alegreyaRegular = {
     fontStyle: 'normal',
     fontWeight: 400,
     src: `url(${AlegreyaRegular})`,
-    fontDisplay:'block'
+    //fontDisplay:'block'
 }
 
 const alegreyaBold = {
@@ -22,7 +22,7 @@ const alegreyaBold = {
     fontStyle: 'normal',
     fontWeight: 800,
     src: `url(${AlegreyaBold})`,
-    fontDisplay:'block'
+    //fontDisplay:'block'
 }
 
 const robotoRegular = {
@@ -30,7 +30,7 @@ const robotoRegular = {
     fontStyle: 'normal',
     fontWeight: 400,
     src: `url(${RobotoRegular})`,
-    fontDisplay:'block'
+    //fontDisplay:'block'
 }
 
 const robotoBold = {
@@ -38,7 +38,7 @@ const robotoBold = {
     fontStyle: 'normal',
     fontWeight: 800,
     src: `url(${RobotoBold})`,
-    fontDisplay:'block'
+    //fontDisplay:'block'
 }
 
 const useStyles = makeStyles({

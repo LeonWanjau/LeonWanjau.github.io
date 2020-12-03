@@ -12,6 +12,7 @@ export const fonts={
 //app bar height
 export const appBarHeight='10vh'
 //observedFonts
+/*
 const observedFonts={
     [fonts.body]:{weight:400},
     [fonts.body]:{weight:800},
@@ -26,6 +27,7 @@ Object.keys(observedFonts).forEach((family)=>{
     fontObservers.push(observer.load())
 })
 export const fontsPromise=Promise.all(fontObservers)
+*/
 
 //svg id names
 export const svgIds={

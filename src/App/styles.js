@@ -55,7 +55,11 @@ const useStyles = makeStyles({
             fontSize:'16px',
             scrollBehavior:'smooth'
         },
-
+        
+        'a,div' :{
+            '-webkit-tap-highlight-color': 'transparent',
+        },
+    
         body: {
             margin: 0
         },

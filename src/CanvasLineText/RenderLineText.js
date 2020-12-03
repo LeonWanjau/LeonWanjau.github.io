@@ -21,6 +21,7 @@ export default class RenderLineText {
         //canvas and renderer
         this.canvas = canvas
         this.renderer = new this.THREE.WebGLRenderer({ canvas: this.canvas, antialias: true })
+        this.renderer.setPixelRatio(window.devicePixelRatio)
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
         this.renderer.setClearColor(new this.THREE.Color(sceneBackground), 1)
 

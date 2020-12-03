@@ -20,7 +20,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(ttf|svg|data|typeface)$/,
+                test: /\.(ttf|svg|data|typeface|woff2)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'file-loader',

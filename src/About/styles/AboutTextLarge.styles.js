@@ -5,7 +5,8 @@ const useStyles=makeStyles({
         display:'flex',
         height:'40vh',
         width:'100%',
-        position:'relative'
+        position:'relative',
+        overflow:'hidden',
     },
 
     animContainer:{
@@ -15,8 +16,11 @@ const useStyles=makeStyles({
 
     fallback:{
         position:'absolute',
-        width:'100%',
-        height:'100%',
+        width:'60%',
+        height:'60%',
+        left:'50%',
+        top:'50%',
+        transform:'translate(-50%,-50%)',
         opacity:1,
     },
     /*

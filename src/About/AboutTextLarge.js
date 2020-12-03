@@ -27,14 +27,14 @@ const AboutTextLarge = () => {
         },10)
     }
     */
-    useEffect(()=>{
-        if(lottieRef.current== null){
+    useEffect(() => {
+        if (lottieRef.current == null) {
             import(/* webpackChunkName: "lottie-AboutTextLarge" */'lottie-web').then(({ default: lottieDefault }) => {
                 lottieRef.current = lottieDefault
                 setLottieLoaded(true)
             })
         }
-    },[])
+    }, [])
 
     //initialize animation
     const animRef = useRef(null)
@@ -85,7 +85,6 @@ const AboutTextLarge = () => {
             setTimeout(() => { animRef.current.play() }, 200)
         }
     }, [animIsIntersecting])
-
 
     return (
         <div className={classes.container}>

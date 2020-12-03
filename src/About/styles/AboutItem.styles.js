@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         backgroundColor: theme.palette.secondary[200],
         position: 'relative',
+        //overflow:'hidden',
     },
 
     textIntersector: {

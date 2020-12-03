@@ -11,12 +11,17 @@ import Theme from 'SharedComponents/Theme'
 import Routes from './Routes'
 //Styles
 import useStyles from './styles'
+//Helmet
+import { Helmet } from 'react-helmet'
+//Tab image
+import TabImage from 'Assets/images/tab-briefcase.svg'
 
 const App = () => {
     const classes = useStyles()
 
-    const [windowLoaded, setWindowLoaded] = useState(false)
+    //const [windowLoaded, setWindowLoaded] = useState(false)
 
+    /*
     useEffect(() => {
         if (document.readyState !== 'complete') {
             window.addEventListener('load', () => {
@@ -26,9 +31,15 @@ const App = () => {
             setWindowLoaded(true)
         }
     }, [])
+    */
 
     return (
-        <div className={`${classes.appContainer} ${windowLoaded ? classes.appLoaded : null}`}>
+        <div className={`${classes.appContainer}`}>
+            <Helmet>
+                <title>Leon Wanjau</title>
+                <link rel='icon' href={TabImage} />
+            </Helmet>
+
             <ThemeProvider theme={Theme}>
                 <Routes />
             </ThemeProvider>

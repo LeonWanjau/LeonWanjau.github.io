@@ -31,12 +31,11 @@ const CanvasLineText = () => {
 
         const { SVGLoader } = await import(/* webpackChunkName: "Three SVGLoader" */ 'three/examples/jsm/loaders/SVGLoader.js')
         threeRef.current.SVGLoader = SVGLoader
-
+    
         setThreeLoaded(true)
     }
 
     const [canvasLoaded, setCanvasLoaded] = useState(false)
-
     useEffect(() => {
         if (threeLoaded && threeRef.current !== null) {
             if (canvasRef.current !== null) {
@@ -64,6 +63,7 @@ const CanvasLineText = () => {
 
             tl.to(`.${classes.fallback}`,{duration:1,scale:0.8,opacity:0,display:'none'})
             .to(`.${classes.canvas}`,{duration:1,scale:1,opacity:1})
+
         }
     },[canvasLoaded])
 

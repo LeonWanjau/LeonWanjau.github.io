@@ -16,31 +16,31 @@ module.exports = merge(common, {
         publicPath: '/dist/'
     },
     mode: 'production',
+    devtool:'none',
     plugins: [
         new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            EMAIL_API: JSON.stringify('https://leon-5.azurewebsites.net/api/sendemail'),
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Personal Site Dev',
             filename: 'index.html',
             template: 'src/App/index.template.html'
-        })
+        }),
     ],
 
-    optimization:{
-        splitChunks:{
-            chunks:'all',
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
             //minSize:0,
         }
     },
 
     /*
     devServer: {
-        //contentBase: __dirname,
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: __dirname,
+        //contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000
     },

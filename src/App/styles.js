@@ -64,12 +64,14 @@ const useStyles = makeStyles({
             margin: 0
         },
 
+        /*
         ':target::before':{
             content:'""',
             display:'block',
             height:'calc(10vh + 10px)',
             marginTop:'-10vh',
         },
+        */
 
         '@font-face':
             [

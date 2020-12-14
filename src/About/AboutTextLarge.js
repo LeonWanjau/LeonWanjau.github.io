@@ -4,8 +4,9 @@ import AboutTextAnim from 'Assets/animations/AboutTextAnim.json.data'
 //import lottie from 'lottie-web'
 //import lottie from 'lottie-web/build/player/lottie_light.min.js'
 import useConditionalIntersectingOnce from 'Utilities/useConditionalIntersectingOnce'
-import SpinningLoader from 'SharedComponents/SpinningLoader'
+//import SpinningLoader from 'SharedComponents/SpinningLoader'
 import { gsap } from 'gsap'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 const AboutTextLarge = () => {
@@ -13,6 +14,10 @@ const AboutTextLarge = () => {
 
     //animation container
     const animContainerRef = useRef(null)
+
+    function checkDomLoaded() {
+        return animContainerRef.current != null
+    }
 
     //lottie library
     const lottieRef = useRef(null)
@@ -31,7 +36,10 @@ const AboutTextLarge = () => {
         if (lottieRef.current == null) {
             import(/* webpackChunkName: "lottie-AboutTextLarge" */'lottie-web').then(({ default: lottieDefault }) => {
                 lottieRef.current = lottieDefault
-                setLottieLoaded(true)
+
+                if (checkDomLoaded) {
+                    setLottieLoaded(true)
+                }
             })
         }
     }, [])
@@ -50,7 +58,9 @@ const AboutTextLarge = () => {
             })
 
             animRef.current.addEventListener('DOMLoaded', () => {
-                setAnimLoaded(true)
+                if (checkDomLoaded) {
+                    setAnimLoaded(true)
+                }
             })
 
             return () => { animRef.current.destroy() }
@@ -62,7 +72,7 @@ const AboutTextLarge = () => {
     useEffect(() => {
         if (animLoaded) {
             const tl = gsap.timeline({
-                onComplete: () => { setFallbackRemoved(true) },
+                onComplete: () => { if (checkDomLoaded) { setFallbackRemoved(true) } },
                 defaults: { ease: 'power1.inOut' }
             })
 
@@ -90,7 +100,7 @@ const AboutTextLarge = () => {
         <div className={classes.container}>
             <div ref={animContainerRef} className={classes.animContainer}></div>
             <div className={`${classes.fallback}`}>
-                <SpinningLoader />
+                <CircularProgress size='100%' />
             </div>
         </div>
     )

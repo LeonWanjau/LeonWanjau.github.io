@@ -12,6 +12,8 @@ import Drawer from 'SharedComponents/Drawer'
 //AppBar Routes
 const routes = [
     { name: 'About', path: '#about' },
+    { name: 'Projects', path: '#projects' },
+    { name: 'Contact', path: '#contact' }
     //{ name: 'Projects', path: '/' },
     //{ name: 'Contacts', path: '/' }
 ]

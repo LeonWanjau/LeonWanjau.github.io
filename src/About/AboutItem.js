@@ -3,8 +3,9 @@ import useStyles from './styles/AboutItem.styles'
 //import lottie from 'lottie-web'
 //import lottie from 'lottie-web/build/player/lottie_light.min.js'
 import { useEffect, useRef, memo, useState } from 'react'
-import SpinningLoader from 'SharedComponents/SpinningLoader'
+//import SpinningLoader from 'SharedComponents/SpinningLoader'
 import { gsap } from 'gsap'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefined, autoplay = true,
     xsScreen = false }) => {
@@ -29,14 +30,17 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
         }, 10)
     }
     */
-    useEffect(()=>{
-        if(lottieRef.current==null){
-            import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web').then(({ default: lottieDefault }) => {
+    useEffect(() => {
+        if (lottieRef.current == null) {
+            const promise = import(/* webpackChunkName: "lottie-AboutItem" */'lottie-web')
+            promise.then(({ default: lottieDefault }) => {
                 lottieRef.current = lottieDefault
-                setLottieLoaded(true)
+                if (animContainerRef !== null) {
+                    setLottieLoaded(true)
+                }
             })
         }
-    },[])
+    }, [])
 
     //initialize animation
     const animRef = useRef(null)
@@ -52,7 +56,7 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
             })
 
             animRef.current.addEventListener('DOMLoaded', () => {
-                setAnimLoaded(true)
+                if (animRef.current !== null) { setAnimLoaded(true)}
             })
 
             return () => { animRef.current.destroy() }
@@ -67,7 +71,11 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
                 `.${classes.fallback}`,
                 {
                     duration: 1, opacity: 0, scaleX: 0.5, scaleY: 0.5, display: 'none', ease: 'power1.inOut',
-                    onComplete: () => { setFallbackRemoved(true) }
+                    onComplete: () => {
+                        if (animRef.current !== null) {
+                            setFallbackRemoved(true)
+                        }
+                    }
                 }
             )
         }
@@ -120,7 +128,7 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
     useEffect(() => {
         if (animEnteringAnimationDone == true) {
             if (func !== undefined) {
-                func(animRef.current)
+                func(animRef.current,animContainerRef.current)
             } else {
                 animRef.current.play()
             }
@@ -143,7 +151,7 @@ const AboutItem = ({ text = 'None', animPath = null, loop = false, func = undefi
 
             <div ref={animIntersectorRef} className={classes.animIntersector}>
                 <div className={classes.fallback}>
-                    <SpinningLoader />
+                    <CircularProgress size='100%'/>
                 </div>
 
                 <div ref={animContainerRef} className={classes.imageContainer}>
@@ -164,7 +172,8 @@ function useIsIntersectingOnce(options, elementRef, fallbackRemoved) {
             const callback = (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        setIsIntersecting(true)
+                       
+                        elementRef.current!==true && setIsIntersecting(true)
                         observer.disconnect()
                     }
                 })
@@ -192,7 +201,7 @@ function useEnteringAnimationDone(elementRef, animation, isIntersecting) {
                 elementRef.current,
                 {
                     ...animation,
-                    onComplete: () => { setEnteringAnimationDone(true) }
+                    onComplete: () => {elementRef.current!==null && setEnteringAnimationDone(true) }
                 }
             )
         }

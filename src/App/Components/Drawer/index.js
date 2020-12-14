@@ -6,7 +6,9 @@ const Drawer = ({ drawerOpen = false, setDrawerOpen }) => {
     const classes = useStyles()
 
     const routes = {
-        About: '#about'
+        About: '#about',
+        Projects:'#projects',
+        Contact:'#contact'
     }
 
     return (

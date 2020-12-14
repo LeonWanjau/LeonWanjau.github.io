@@ -43,3 +43,38 @@ export function cutBottomRightAndTopLeft(paddingTops, paddingSides, clipWidth, u
         ${clipWidth} 0
         )`
 }
+
+export function makeCancellable(promise) {
+    let hasCancelled_ = false
+
+    const wrappedPromise = new Promise((resolve, reject) => {
+        promise.then(
+            val => hasCancelled_ ? reject({ isCancelled: true }) : resolve(val),
+            error => hasCanceled_ ? reject({ isCanceled: true }) : reject(error)
+        )
+    })
+
+    return {
+        promise: wrappedPromise,
+        cancel() {
+            hasCancelled_ = true;
+        },
+    }
+}
+
+export function copyToClipBoard(text) {
+    let textArea = document.createElement('textarea')
+    textArea.value = text
+
+    textArea.style.top = '0'
+    textArea.style.left = '0'
+    textArea.style.position = 'fixed'
+
+    document.body.appendChild(textArea)
+    textArea.focus()
+    textArea.select()
+
+    document.execCommand('copy')
+
+    document.body.removeChild(textArea)
+}

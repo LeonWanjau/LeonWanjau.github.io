@@ -9,7 +9,7 @@ const useConditionalIntersectingOnce = (options, elementRef, condition) => {
 
             const callback = (entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && elementRef.current != null) {
                         setIsIntersecting(true)
                         observer.disconnect()
                     }

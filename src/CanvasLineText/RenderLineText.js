@@ -8,15 +8,15 @@ import Helvetiker from 'Assets/fonts/webgl/Helvetiker_regular.typeface.json.data
 //import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js'
 
 export default class RenderLineText {
-    constructor(canvas, sceneBackground,THREE,SVGLoader,setCanvasLoaded) {
+    constructor(canvas, sceneBackground, THREE, SVGLoader, setCanvasLoaded) {
         //THREE
         this.THREE = THREE
 
         //SVGLoader
-        this.SVGLoader=SVGLoader
+        this.SVGLoader = SVGLoader
 
         //set canvas loaded
-        this.setCanvasLoaded=setCanvasLoaded
+        this.setCanvasLoaded = setCanvasLoaded
 
         //canvas and renderer
         this.canvas = canvas
@@ -37,7 +37,7 @@ export default class RenderLineText {
         this.scene = new this.THREE.Scene()
         this.scene.background = new this.THREE.Color(sceneBackground) //Previous 0xf0f0f0
 
-        //texture loader
+        //font loader
         this.fontLoader = new this.THREE.FontLoader()
 
         //orbit controls
@@ -196,8 +196,10 @@ export default class RenderLineText {
 
         this.canvas.addEventListener('mouseenter', this.boundOnCanvasMouseEnter, false)
 
-        if(this.firstRender==true){
-            this.setCanvasLoaded(true)
+        if (this.firstRender == true) {
+            if (this.canvas != null) {
+                this.setCanvasLoaded(true)
+            }
             this.firstRender = false
         }
     }

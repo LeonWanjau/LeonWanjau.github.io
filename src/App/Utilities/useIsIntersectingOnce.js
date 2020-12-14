@@ -4,17 +4,17 @@ const useIsIntersectingOnce = (options, elementRef) => {
     const [isIntersecting, setIsIntersecting] = useState(false)
 
     useEffect(() => {
-        let observer 
+        let observer
 
         const callback = (entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && elementRef.current !== null) {
                     setIsIntersecting(true)
                     observer.disconnect()
                 }
             })
         }
-    
+
         observer = new IntersectionObserver(callback, options)
 
         observer.observe(elementRef.current)

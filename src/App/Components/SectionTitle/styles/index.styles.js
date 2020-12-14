@@ -38,6 +38,15 @@ const useStyles = makeStyles(theme=>({
         )`
     },
 
+    linkActive:{
+        '&::before':{
+            content:'""',
+            display:'block',
+            height:'calc(10vh + 10px)',
+            marginTop:'-10vh',
+        },
+    },
+
     [theme.breakpoints.up('sm')]:{
         titleIntersector:{
             marginBottom:'5rem'

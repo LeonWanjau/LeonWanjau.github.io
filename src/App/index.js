@@ -15,6 +15,8 @@ import useStyles from './styles'
 import { Helmet } from 'react-helmet'
 //Tab image
 import TabImage from 'Assets/images/tab-briefcase.svg'
+//React router
+//import { HashRouter } from 'react-router-dom'
 
 const App = () => {
     const classes = useStyles()
@@ -41,7 +43,7 @@ const App = () => {
             </Helmet>
 
             <ThemeProvider theme={Theme}>
-                <Routes />
+                    <Routes />
             </ThemeProvider>
         </div>
     )

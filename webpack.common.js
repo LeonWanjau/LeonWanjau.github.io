@@ -20,7 +20,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(ttf|svg|data|typeface|woff2)$/,
+                test: /\.(ttf|svg|data|typeface|woff2|jpg)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'file-loader',
@@ -59,5 +59,5 @@ module.exports = {
             chunks:'all',
             //minSize:0,
         }
-    }
+    },
 }

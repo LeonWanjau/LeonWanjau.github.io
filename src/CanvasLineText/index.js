@@ -2,8 +2,8 @@ import useStyles from './styles/index.styles.js'
 import { useRef, useEffect, memo, useState } from 'react'
 import RenderLineText from './RenderLineText'
 import { useTheme } from '@material-ui/core/styles'
-import { gsap} from 'gsap'
-
+import { gsap } from 'gsap'
+import { CircularProgress } from '@material-ui/core'
 
 const CanvasLineText = () => {
     const classes = useStyles()
@@ -18,11 +18,11 @@ const CanvasLineText = () => {
         setTimeout(loadThree,10)
     }
     */
-    useEffect(()=>{
-        if(threeRef.current==null){
+    useEffect(() => {
+        if (threeRef.current == null) {
             loadThree()
         }
-    },[])
+    }, [])
 
     async function loadThree() {
         threeRef.current = {}
@@ -31,8 +31,10 @@ const CanvasLineText = () => {
 
         const { SVGLoader } = await import(/* webpackChunkName: "Three SVGLoader" */ 'three/examples/jsm/loaders/SVGLoader.js')
         threeRef.current.SVGLoader = SVGLoader
-    
-        setThreeLoaded(true)
+
+        if (canvasRef.current !== null) {
+            setThreeLoaded(true)
+        }
     }
 
     const [canvasLoaded, setCanvasLoaded] = useState(false)
@@ -57,31 +59,34 @@ const CanvasLineText = () => {
         }
     }, [threeLoaded])
 
-    useEffect(()=>{
-        if(canvasLoaded){
-            const tl=gsap.timeline({defaults:{ ease: 'power1.inOut' } })
+    useEffect(() => {
+        if (canvasLoaded) {
+            const tl = gsap.timeline({ defaults: { ease: 'power1.inOut' } })
 
-            tl.to(`.${classes.fallback}`,{duration:1,scale:0.8,opacity:0,display:'none'})
-            .to(`.${classes.canvas}`,{duration:1,scale:1,opacity:1})
+            tl.to(`.${classes.fallback}`, { duration: 1, scale: 0.8, opacity: 0, display: 'none' })
+                .to(`.${classes.canvas}`, { duration: 1, scale: 1, opacity: 1 })
 
         }
-    },[canvasLoaded])
+    }, [canvasLoaded])
 
     return (
         <React.Fragment>
             <div className={classes.container}>
-                
+
                 <canvas ref={canvasRef} className={`${classes.canvas}`}
                 >
                 </canvas>
-                
+
                 <div
                     className={`${classes.fallback}`}>
-                        <p className={classes.fallbackText}>
-                            Hello I'm Leon
-                            <br/> and I'm a 
-                            <br/>Fullstack Developer
+                    <p className={classes.fallbackText}>
+                        Hello I'm Leon
+                            <br /> and I'm a
+                            <br />Fullstack Developer
                         </p>
+                    <div className={classes.loaderContainer}>
+                        <CircularProgress size='3rem' />
+                    </div>
                 </div>
             </div>
             {/* 

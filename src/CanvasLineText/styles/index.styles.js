@@ -49,6 +49,11 @@ const useStyles = makeStyles(theme => ({
         transition: 'opacity 500ms ease-in-out',
     },
 
+    loaderContainer:{
+        margin:'1rem',
+        alignSelf:'flex-start'
+    },
+
     fallbackText: {
         margin: 0,
         //fontSize:'7.5rem',

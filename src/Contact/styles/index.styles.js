@@ -105,6 +105,7 @@ const useStyles = makeStyles(theme => ({
     email: {
         color: theme.palette.primary[500],
         textDecoration:'underline',
+        fontSize:'calc(25.6px + (44.56 - 25.6) * ((100vw - 300px) / (1366 - 300)))',
 
         '&:hover':{
             cursor:'pointer'
